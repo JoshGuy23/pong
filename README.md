@@ -4,6 +4,8 @@ This is a simple game of Pong that can be played by 2 players.
 
 The game continues until a player gets 3 points.
 
+The file "main.py" runs with "paddle.py", "ball.py", and "scoreboard.py".
+
 ## Controls (Player 1) ##
 
 W - Move Paddle up.
