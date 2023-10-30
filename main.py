@@ -33,10 +33,19 @@ def play_game():
 
         # Detect collision with walls
         if ball.ycor() > 280 or ball.ycor() < -280:
-            ball.bounce()
+            ball.bounce_y()
         # Detect collision with paddles
         if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or ball.distance(left_paddle) < 50 and ball.xcor() < -320:
-            ball.hit_paddle()
+            ball.bounce_x()
+
+        # Reset ball's position and add points if it misses.
+        if ball.xcor() > 380:
+            ball.set_ball()
+            ball.bounce_x()
+
+        if ball.xcor() < -380:
+            ball.set_ball()
+            ball.bounce_x()
 
     screen.exitonclick()
 
