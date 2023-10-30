@@ -11,13 +11,16 @@ def setup_screen():
     return screen
 
 
-def start():
+def play_game():
     screen = setup_screen()
     right_paddle = Paddle(x_pos=350, y_pos=0)
+    left_paddle = Paddle(x_pos=-350, y_pos=0)
 
     screen.listen()
-    screen.onkey(fun=right_paddle.up, key="Up")
-    screen.onkey(fun=right_paddle.down, key="Down")
+    screen.onkeypress(fun=right_paddle.up, key="Up")
+    screen.onkeypress(fun=right_paddle.down, key="Down")
+    screen.onkeypress(fun=left_paddle.up, key="w")
+    screen.onkeypress(fun=left_paddle.down, key="s")
 
     playing = True
     while playing:
@@ -26,4 +29,4 @@ def start():
     screen.exitonclick()
 
 
-start()
+play_game()
