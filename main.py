@@ -1,4 +1,5 @@
 from turtle import Screen
+from paddle import Paddle
 
 
 def setup_screen():
@@ -12,6 +13,16 @@ def setup_screen():
 
 def start():
     screen = setup_screen()
+    right_paddle = Paddle(x_pos=350, y_pos=0)
+
+    screen.listen()
+    screen.onkey(fun=right_paddle.up, key="Up")
+    screen.onkey(fun=right_paddle.down, key="Down")
+
+    playing = True
+    while playing:
+        screen.update()
+
     screen.exitonclick()
 
 
