@@ -1,6 +1,7 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 
@@ -18,6 +19,7 @@ def play_game():
     right_paddle = Paddle(x_pos=350, y_pos=0)
     left_paddle = Paddle(x_pos=-350, y_pos=0)
     ball = Ball()
+    scoreboard = Scoreboard()
 
     screen.listen()
     screen.onkeypress(fun=right_paddle.up, key="Up")
@@ -37,15 +39,21 @@ def play_game():
         # Detect collision with paddles
         if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or ball.distance(left_paddle) < 50 and ball.xcor() < -320:
             ball.bounce_x()
+            ball.add_speed()
 
         # Reset ball's position and add points if it misses.
         if ball.xcor() > 380:
             ball.set_ball()
-            ball.bounce_x()
+            scoreboard.update_score(player="left")
 
         if ball.xcor() < -380:
             ball.set_ball()
-            ball.bounce_x()
+            scoreboard.update_score(player="right")
+
+        # End the game if a player gets 3 points
+        if scoreboard.left_score == 3 or scoreboard.right_score == 3:
+            playing = False
+            scoreboard.game_over()
 
     screen.exitonclick()
 

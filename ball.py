@@ -6,9 +6,9 @@ MOVE = 10
 class Ball(Turtle):
     def __init__(self):
         super().__init__()
-        self.create_ball()
         self.x_move = MOVE
         self.y_move = MOVE
+        self.create_ball()
 
     def create_ball(self):
         self.shape("circle")
@@ -28,4 +28,14 @@ class Ball(Turtle):
         self.x_move *= -1
 
     def set_ball(self):
+        if self.x_move > 0:
+            self.x_move = 10
+        else:
+            self.x_move = -10
         self.goto(x=0, y=0)
+
+    def add_speed(self):
+        if self.x_move > 0:
+            self.x_move += 10
+        else:
+            self.x_move -= 10
